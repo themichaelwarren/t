@@ -9,7 +9,8 @@
     <style>
         /* Base Styles */
         :root {
-            --primary-color: #3563E9;
+            --icon-color: #a7874b;
+            --primary-color: #21324c;
             --secondary-color: #FF6B6B;
             --text-color: #333333;
             --light-text: #666666;
@@ -78,7 +79,7 @@
         
         .btn-secondary {
             background: white;
-            color: var(--primary-color);
+            color: var(--primary-color)!important;
             border: 1px solid var(--primary-color);
         }
         
@@ -137,13 +138,14 @@
         }
         
         .logo img {
-            height: 40px;
+            height: 60px;
             margin-right: 10px;
         }
         
         .nav-links {
             display: flex;
             list-style: none;
+            align-items: center;
         }
         
         .nav-links li {
@@ -153,6 +155,13 @@
         .nav-links a {
             text-decoration: none;
             color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        a.btn {
+            text-decoration: none;
+            color:#eee;
             font-weight: 500;
             transition: color 0.3s ease;
         }
@@ -247,7 +256,7 @@
         .feature-icon {
             font-size: 2.5rem;
             margin-bottom: 20px;
-            color: var(--primary-color);
+            color: var(--icon-color);
         }
         
         /* How It Works Section */
@@ -801,8 +810,8 @@
     <header>
         <div class="container">
             <nav>
-                <a href="#" class="logo">
-                    Warren Elite
+                <a href="/" class="logo">
+                    <img src="logo.png">
                 </a>
                 <ul class="nav-links">
                     <li><a href="#features">特徴</a></li>
@@ -823,10 +832,9 @@
             <div class="hero-content">
                 <div class="hero-text">
                     <p class="hero-subtitle">Welcome to Warren Elite English Coaching</p>
-                    <h1>授業時間外まで徹底サポート！</h1>
-                    <p>Support that Goes Beyond Class Time!</p>
+                    <h1>授業時間外まで徹底サポート！
+                    </h1>
                     <p>志望校合格と英語資格取得までマンツーマンサポート</p>
-                    <p>One-on-one support until you reach university admission and English certification success.</p>
                     <div class="hero-cta">
                         <a href="#contact" class="btn">資料請求</a>
                         <a href="#contact" class="btn">相談予約</a>
@@ -871,7 +879,6 @@
                     <h3>授業外サポート</h3>
                     <h4>Beyond-Class Support</h4>
                     <p>専任コーチが毎日の学習を管理し、質問に24時間以内に回答します。</p>
-                    <p>Your dedicated coach manages your daily study schedule and answers questions within 24 hours.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
@@ -880,7 +887,6 @@
                     <h3>マンツーマン指導</h3>
                     <h4>One-on-One Mentoring</h4>
                     <p>経験豊富なネイティブコーチがあなたの弱点に合わせて指導。</p>
-                    <p>An experienced coach tailors instruction to your specific weaknesses.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
@@ -889,7 +895,6 @@
                     <h3>学習計画の構築</h3>
                     <h4>Structured Study Plan</h4>
                     <p>最初に目標スコアと志望校に合わせた学習プランを作成します。</p>
-                    <p>We create a personalized study plan tailored to your target test scores and universities.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
@@ -898,7 +903,6 @@
                     <h3>オンライン学習ツール</h3>
                     <h4>Online Tools & Resources</h4>
                     <p>オンラインの宿題提出・フィードバックシステムや学習テクニック資料にアクセスできます。</p>
-                    <p>Students have access to an online homework submission and feedback system, as well as a library of study technique resources.</p>
                 </div>
             </div>
         </div>
