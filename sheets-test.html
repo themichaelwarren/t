@@ -107,7 +107,7 @@
 
     <script>
         // Configuration
-        const SHEET_ID = '1KbrjdbxkXrpcadZbW7RarGiLJ6vE5A3LYY13K25eZUM'; // Replace with your actual sheet ID
+        const SHEET_ID = 'YOUR_GOOGLE_SHEET_ID_HERE'; // Replace with your actual sheet ID
         const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv`;
         
         // Content mapping object
@@ -189,21 +189,15 @@
             try {
                 showStatus('Fetching content from Google Sheets...');
                 
-                // Note: Replace with your actual Google Sheets CSV URL
-                // For demo purposes, we'll simulate the data
-                const simulatedCSV = `header,"Welcome to My Dynamic Site"
-lead,"This content is managed through Google Sheets and updates automatically!"
-button,"Explore Features"
-button_url,"#features"
-announcement,"🎉 New features launching this week!"
-footer_text,"© 2025 Dynamic Site - Powered by Google Sheets"`;
+                // Fetch the actual CSV data from Google Sheets
+                const response = await fetch(SHEET_URL);
                 
-                // In real implementation, uncomment this:
-                // const response = await fetch(SHEET_URL);
-                // const csv = await response.text();
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
                 
-                // For demo, use simulated data:
-                const csv = simulatedCSV;
+                const csv = await response.text();
+                console.log('Raw CSV data:', csv); // Debug log
                 
                 const data = parseCSV(csv);
                 updateContent(data);
