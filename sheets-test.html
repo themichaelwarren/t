@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Content Example</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 3rem 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: transform 0.2s ease;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+        
+        .announcement {
+            background: #f8f9ff;
+            padding: 1rem;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .loading {
+            opacity: 0.5;
+            font-style: italic;
+        }
+        
+        .status {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: #e8f5e8;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+        
+        .error {
+            background: #ffe8e8;
+            color: #d63031;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #eee;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="announcement loading" id="announcement">
+        Loading announcement...
+    </div>
+    
+    <section class="hero">
+        <h1 class="loading" id="header">Loading header...</h1>
+        <p class="loading" id="lead">Loading description...</p>
+        <a href="#" class="cta-button loading" id="cta-button">Loading...</a>
+    </section>
+    
+    <div class="status" id="status">
+        Fetching content from Google Sheets...
+    </div>
+    
+    <footer>
+        <p id="footer_text" class="loading">Loading footer...</p>
+    </footer>
+
+    <script>
+        // Configuration
+        const SHEET_ID = '1KbrjdbxkXrpcadZbW7RarGiLJ6vE5A3LYY13K25eZUM'; // Replace with your actual sheet ID
+        const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv`;
+        
+        // Content mapping object
+        let content = {};
+        
+        // Function to parse CSV into key-value pairs
+        function parseCSV(csv) {
+            const lines = csv.trim().split('\n');
+            const data = {};
+            
+            lines.forEach(line => {
+                // Handle CSV parsing (basic - you might want to use Papa Parse for complex data)
+                const [key, ...valueParts] = line.split(',');
+                const value = valueParts.join(',').replace(/^"|"$/g, ''); // Remove quotes
+                
+                if (key && value) {
+                    data[key.trim().toLowerCase()] = value.trim();
+                }
+            });
+            
+            return data;
+        }
+        
+        // Function to update page content
+        function updateContent(data) {
+            // Update header
+            const headerEl = document.getElementById('header');
+            if (data.header) {
+                headerEl.textContent = data.header;
+                headerEl.classList.remove('loading');
+            }
+            
+            // Update lead text
+            const leadEl = document.getElementById('lead');
+            if (data.lead) {
+                leadEl.textContent = data.lead;
+                leadEl.classList.remove('loading');
+            }
+            
+            // Update button
+            const buttonEl = document.getElementById('cta-button');
+            if (data.button) {
+                buttonEl.textContent = data.button;
+                buttonEl.classList.remove('loading');
+            }
+            
+            // Update button URL
+            if (data.button_url) {
+                buttonEl.href = data.button_url;
+            }
+            
+            // Update announcement
+            const announcementEl = document.getElementById('announcement');
+            if (data.announcement) {
+                announcementEl.textContent = data.announcement;
+                announcementEl.classList.remove('loading');
+                announcementEl.style.display = 'block';
+            } else {
+                announcementEl.style.display = 'none';
+            }
+            
+            // Update footer
+            const footerEl = document.getElementById('footer_text');
+            if (data.footer_text) {
+                footerEl.textContent = data.footer_text;
+                footerEl.classList.remove('loading');
+            }
+        }
+        
+        // Function to show status
+        function showStatus(message, isError = false) {
+            const statusEl = document.getElementById('status');
+            statusEl.textContent = message;
+            statusEl.className = isError ? 'status error' : 'status';
+        }
+        
+        // Fetch and load content
+        async function loadContent() {
+            try {
+                showStatus('Fetching content from Google Sheets...');
+                
+                // Note: Replace with your actual Google Sheets CSV URL
+                // For demo purposes, we'll simulate the data
+                const simulatedCSV = `header,"Welcome to My Dynamic Site"
+lead,"This content is managed through Google Sheets and updates automatically!"
+button,"Explore Features"
+button_url,"#features"
+announcement,"🎉 New features launching this week!"
+footer_text,"© 2025 Dynamic Site - Powered by Google Sheets"`;
+                
+                // In real implementation, uncomment this:
+                // const response = await fetch(SHEET_URL);
+                // const csv = await response.text();
+                
+                // For demo, use simulated data:
+                const csv = simulatedCSV;
+                
+                const data = parseCSV(csv);
+                updateContent(data);
+                
+                showStatus('✅ Content loaded successfully! Last updated: ' + new Date().toLocaleTimeString());
+                
+                // Store data globally for debugging
+                window.siteContent = data;
+                console.log('Loaded content:', data);
+                
+            } catch (error) {
+                console.error('Error loading content:', error);
+                showStatus('❌ Error loading content. Using fallback content.', true);
+                
+                // Fallback content
+                updateContent({
+                    header: 'Welcome to My Site',
+                    lead: 'Dynamic content loading failed, but the site still works!',
+                    button: 'Learn More',
+                    button_url: '#',
+                    footer_text: '© 2025 My Site'
+                });
+            }
+        }
+        
+        // Load content when page loads
+        document.addEventListener('DOMContentLoaded', loadContent);
+        
+        // Optional: Refresh content every 5 minutes
+        setInterval(loadContent, 5 * 60 * 1000);
+    </script>
+</body>
+</html>
