@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Warren Elite English Coaching</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a18;
+    --paper: #f5f2ec;
+    --cream: #ede9e0;
+    --gold: #b8924a;
+    --gold-light: #d4a96a;
+    --muted: #7a766e;
+    --border: #d8d3c8;
+    --white: #fdfcfa;
+    --serif-en: 'Cormorant Garamond', Georgia, serif;
+    --serif-ja: 'Noto Serif JP', serif;
+    --sans: 'DM Sans', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── LANGUAGE TOGGLE ── */
+  #lang-toggle {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 100;
+    display: flex;
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    background: var(--white);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+  #lang-toggle button {
+    padding: 0.4rem 0.9rem;
+    border: none;
+    background: transparent;
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  #lang-toggle button.active {
+    background: var(--ink);
+    color: var(--white);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100svh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    background: var(--ink);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6rem 4rem 6rem 5rem;
+    position: relative;
+  }
+  .hero-left::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='1' fill='%23ffffff08'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero-title-en {
+    font-family: var(--serif-en);
+    font-weight: 300;
+    font-size: clamp(2.8rem, 4vw, 4.2rem);
+    line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.35s forwards;
+  }
+  .hero-title-en em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .hero-title-ja {
+    font-family: var(--serif-ja);
+    font-weight: 300;
+    font-size: clamp(1rem, 1.4vw, 1.3rem);
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.15em;
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.5s forwards;
+  }
+
+  .hero-desc {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.65);
+    max-width: 340px;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.65s forwards;
+  }
+  .hero-desc.ja { font-family: var(--serif-ja); font-size: 0.9rem; letter-spacing: 0.05em; }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.8s forwards;
+  }
+  .btn-primary {
+    display: inline-block;
+    padding: 0.85rem 2rem;
+    background: var(--gold);
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-outline {
+    display: inline-block;
+    padding: 0.85rem 2rem;
+    border: 1px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold-light); }
+
+  .hero-right {
+    background: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem;
+    position: relative;
+  }
+  .hero-right::before {
+    content: '英語';
+    position: absolute;
+    font-family: var(--serif-ja);
+    font-size: 18rem;
+    font-weight: 600;
+    color: rgba(0,0,0,0.04);
+    line-height: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .hero-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    position: relative;
+    z-index: 1;
+  }
+  .stat {
+    opacity: 0;
+    animation: fadeUp 0.8s forwards;
+  }
+  .stat:nth-child(1) { animation-delay: 0.5s; }
+  .stat:nth-child(2) { animation-delay: 0.7s; }
+  .stat:nth-child(3) { animation-delay: 0.9s; }
+
+  .stat-num {
+    font-family: var(--serif-en);
+    font-size: 3.5rem;
+    font-weight: 300;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .stat-num span { font-style: italic; color: var(--gold); }
+  .stat-label { font-size: 0.8rem; color: var(--muted); letter-spacing: 0.05em; margin-top: 0.25rem; }
+  .stat-label.ja { font-family: var(--serif-ja); }
+
+  /* ── SECTIONS COMMON ── */
+  section { padding: 6rem 0; }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .section-label {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: var(--serif-en);
+    font-size: clamp(2rem, 3vw, 2.8rem);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+  .section-title.ja {
+    font-family: var(--serif-ja);
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    letter-spacing: 0.08em;
+  }
+  .section-title em { font-style: italic; color: var(--gold); }
+
+  /* ── ABOUT ── */
+  .about { background: var(--white); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .about-text p {
+    font-size: 0.95rem;
+    color: #4a4740;
+    margin-bottom: 1.2rem;
+    line-height: 1.85;
+  }
+  .about-text p.ja { font-family: var(--serif-ja); letter-spacing: 0.05em; }
+
+  .about-card {
+    background: var(--ink);
+    color: var(--white);
+    padding: 3rem;
+    position: relative;
+  }
+  .about-card::before {
+    content: '';
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    right: -1rem;
+    bottom: -1rem;
+    border: 1px solid var(--gold);
+    z-index: -1;
+  }
+  .about-card-name {
+    font-family: var(--serif-en);
+    font-size: 1.8rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--gold-light);
+    margin-bottom: 0.25rem;
+  }
+  .about-card-role {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 1.5rem;
+  }
+  .about-card p {
+    font-size: 0.88rem;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 1rem;
+  }
+  .about-card p.ja { font-family: var(--serif-ja); letter-spacing: 0.05em; }
+  .about-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+  .about-tag {
+    padding: 0.3rem 0.75rem;
+    border: 1px solid rgba(184,146,74,0.4);
+    font-size: 0.72rem;
+    color: var(--gold-light);
+    letter-spacing: 0.08em;
+  }
+
+  /* ── OFFERINGS ── */
+  .offerings { background: var(--paper); }
+  .offerings-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    margin-top: 3rem;
+    background: var(--border);
+  }
+  .offering-card {
+    background: var(--white);
+    padding: 2.5rem 2rem;
+    transition: background 0.2s;
+  }
+  .offering-card:hover { background: var(--cream); }
+  .offering-icon {
+    font-family: var(--serif-ja);
+    font-size: 2rem;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+  .offering-title {
+    font-family: var(--serif-en);
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-bottom: 0.25rem;
+  }
+  .offering-title.ja { font-family: var(--serif-ja); font-size: 1rem; letter-spacing: 0.08em; color: var(--muted); }
+  .offering-desc {
+    font-size: 0.87rem;
+    color: #5a5650;
+    margin-top: 1rem;
+    line-height: 1.75;
+  }
+  .offering-desc.ja { font-family: var(--serif-ja); letter-spacing: 0.04em; }
+  .offering-price {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    font-family: var(--serif-en);
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--ink);
+  }
+  .offering-price small {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    color: var(--muted);
+    display: block;
+    margin-top: 0.25rem;
+    letter-spacing: 0.05em;
+  }
+  .offering-price small.ja { font-family: var(--serif-ja); }
+
+  /* ── HOW IT WORKS ── */
+  .how { background: var(--cream); }
+  .how-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+    counter-reset: steps;
+  }
+  .step {
+    counter-increment: steps;
+    position: relative;
+    padding-top: 3rem;
+  }
+  .step::before {
+    content: counter(steps, decimal-leading-zero);
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: var(--serif-en);
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--border);
+    line-height: 1;
+  }
+  .step-title {
+    font-family: var(--serif-en);
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-bottom: 0.25rem;
+    color: var(--ink);
+  }
+  .step-title.ja { font-family: var(--serif-ja); font-size: 0.9rem; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.75rem; }
+  .step p { font-size: 0.85rem; color: #5a5650; line-height: 1.75; }
+  .step p.ja { font-family: var(--serif-ja); letter-spacing: 0.04em; }
+
+  /* ── SCHEDULE ── */
+  .schedule { background: var(--white); }
+  .schedule-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .calendly-stub {
+    background: var(--cream);
+    border: 1px dashed var(--border);
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    color: var(--muted);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+  }
+  .calendly-stub span { font-size: 2rem; }
+
+  /* ── CONTACT FORM ── */
+  .contact { background: var(--ink); color: var(--white); }
+  .contact .section-title { color: var(--white); }
+  .contact .section-title em { color: var(--gold-light); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .contact-intro p {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+  .contact-intro p.ja { font-family: var(--serif-ja); letter-spacing: 0.05em; }
+
+  .form-group { margin-bottom: 1.25rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  label {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 0.4rem;
+  }
+  label .ja-label {
+    font-family: var(--serif-ja);
+    text-transform: none;
+    letter-spacing: 0.08em;
+    margin-left: 0.5rem;
+    color: rgba(255,255,255,0.3);
+    font-weight: 300;
+  }
+
+  input, select, textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: var(--white);
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    padding: 0.75rem 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+    appearance: none;
+    border-radius: 0;
+  }
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--gold);
+  }
+  input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.25); }
+  select option { background: var(--ink); color: var(--white); }
+  textarea { resize: vertical; min-height: 120px; }
+
+  .radio-group {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .radio-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.7);
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 300;
+  }
+  .radio-label input[type="radio"] {
+    width: auto;
+    accent-color: var(--gold);
+    padding: 0;
+  }
+  .radio-label .ja-note {
+    font-family: var(--serif-ja);
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .form-submit {
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .btn-submit {
+    padding: 0.9rem 2.5rem;
+    background: var(--gold);
+    color: var(--white);
+    border: none;
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-submit:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+  .form-note {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.35);
+    line-height: 1.5;
+  }
+  .form-note.ja { font-family: var(--serif-ja); letter-spacing: 0.04em; }
+
+  #form-success {
+    display: none;
+    background: rgba(184,146,74,0.1);
+    border: 1px solid var(--gold);
+    padding: 1.5rem;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--gold-light);
+    line-height: 1.7;
+  }
+  #form-success .ja { font-family: var(--serif-ja); font-size: 0.85rem; color: rgba(212,169,106,0.8); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #111110;
+    padding: 2.5rem 0;
+    text-align: center;
+  }
+  .footer-brand {
+    font-family: var(--serif-en);
+    font-size: 1.2rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+  footer p {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.08em;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── LANGUAGE SWITCHING ── */
+  .en-text, .ja-text { transition: opacity 0.25s; }
+  body.lang-ja .en-text { display: none; }
+  body.lang-en .ja-text { display: none; }
+  body:not(.lang-ja):not(.lang-en) .ja-text { display: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 5rem 2rem 3rem; }
+    .hero-right { padding: 3rem 2rem; }
+    .hero-stats { flex-direction: row; flex-wrap: wrap; gap: 2rem; }
+    .about-grid, .schedule-inner, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .offerings-grid { grid-template-columns: 1fr; }
+    .how-steps { grid-template-columns: 1fr 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .about-card::before { display: none; }
+  }
+
+  @media (max-width: 540px) {
+    section { padding: 4rem 0; }
+    .how-steps { grid-template-columns: 1fr; }
+    .hero-left { padding: 4rem 1.5rem 2.5rem; }
+    #lang-toggle { top: 1rem; right: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- LANGUAGE TOGGLE -->
+<div id="lang-toggle">
+  <button onclick="setLang('en')" class="active" id="btn-en">EN</button>
+  <button onclick="setLang('ja')" id="btn-ja">日本語</button>
+</div>
+
+<!-- ── HERO ── -->
+<section class="hero" id="top">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Warren Elite English Coaching</p>
+
+    <h1 class="hero-title-en">
+      <span class="en-text">Think in English.<br><em>Speak with confidence.</em></span>
+      <span class="ja-text" style="font-family: var(--serif-ja); font-size: clamp(2rem, 3.5vw, 3.2rem); letter-spacing: 0.1em;">英語で考える。<br><em style="font-style: normal;">自信を持って話す。</em></span>
+    </h1>
+
+    <p class="hero-title-ja en-text">英語で考える。自信を持って話す。</p>
+
+    <p class="hero-desc en-text">
+      One-on-one English coaching for university students and working adults — online and in-person in the Zushi / Kamakura area.
+    </p>
+    <p class="hero-desc ja ja-text">
+      大学生・社会人のための完全個別英語コーチング。オンラインまたは逗子・鎌倉エリアでの対面レッスンに対応。
+    </p>
+
+    <div class="hero-cta">
+      <a href="#schedule" class="btn-primary en-text">Book a Session</a>
+      <a href="#schedule" class="btn-primary ja-text">体験予約はこちら</a>
+      <a href="#contact" class="btn-outline en-text">Get in Touch</a>
+      <a href="#contact" class="btn-outline ja-text">お問い合わせ</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">1<span>:1</span></div>
+        <div class="stat-label en-text">Fully personalised sessions</div>
+        <div class="stat-label ja ja-text">完全個別指導</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">15<span>+</span></div>
+        <div class="stat-label en-text">Years combined experience</div>
+        <div class="stat-label ja ja-text">指導経験の合計年数</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">2</div>
+        <div class="stat-label en-text">Native-level bilingual coaches</div>
+        <div class="stat-label ja ja-text">バイリンガル講師</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text">
+        <p class="section-label">About / 講師紹介</p>
+        <h2 class="section-title en-text">We know what it's like to <em>live between languages.</em></h2>
+        <h2 class="section-title ja ja-text">言語の間で生きる感覚を、<em style="font-style: normal;">私たちは知っています。</em></h2>
+        <p class="en-text">
+          Warren Elite is led by Michael Warren — bilingual English-Japanese coach, professional interpreter, and localization specialist based in Zushi. Having lived and worked across both languages professionally, Michael doesn't just teach English — he helps you understand <em>how English thinks.</em>
+        </p>
+        <p class="ja ja-text">
+          Warren Eliteを率いるのは、逗子在住のマイケル・ウォーレン。バイリンガルの英語コーチ、通訳者、ローカライズのスペシャリストとして活躍しています。英語と日本語の両方でプロとして働いてきた経験から、英語そのものだけでなく、「英語の考え方」を伝えることを大切にしています。
+        </p>
+        <p class="en-text">
+          With a background in the JET Programme, translation, and building AI-assisted language tools, Michael brings a rare perspective — fluency in both the language and the logic behind it.
+        </p>
+        <p class="ja ja-text">
+          JETプログラム出身で、翻訳やAI言語ツールの開発にも携わってきたマイケルは、言語そのものだけでなく、その背後にある論理にも精通した稀有な存在です。
+        </p>
+      </div>
+      <div class="about-card">
+        <div class="about-card-name">Michael Warren</div>
+        <div class="about-card-role">Lead Coach · Bilingual EN/JA</div>
+        <p class="en-text">Bilingual English-Japanese. Former JET Programme. Professional interpreter and translator. Based in Zushi, Kanagawa.</p>
+        <p class="ja ja-text">英日バイリンガル。元JETプログラム参加者。プロ通訳者・翻訳者。神奈川県逗子市在住。</p>
+        <div class="about-tags">
+          <span class="about-tag">Conversation</span>
+          <span class="about-tag">Academic Writing</span>
+          <span class="about-tag">Business English</span>
+          <span class="about-tag">IELTS / TOEFL</span>
+          <span class="about-tag">JET Programme</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── OFFERINGS ── -->
+<section class="offerings" id="offerings">
+  <div class="container">
+    <p class="section-label">What We Offer / コース紹介</p>
+    <h2 class="section-title en-text">Choose the session <em>that fits your goals.</em></h2>
+    <h2 class="section-title ja ja-text">あなたの目標に合った<em style="font-style: normal;">コースを選ぶ。</em></h2>
+
+    <div class="offerings-grid">
+      <!-- Card 1 -->
+      <div class="offering-card">
+        <span class="offering-icon">話</span>
+        <div class="offering-title en-text">Conversation Coaching</div>
+        <div class="offering-title ja">英会話コーチング</div>
+        <p class="offering-desc en-text">Structured conversation sessions focused on fluency, natural expression, and thinking in English — not just translating from Japanese.</p>
+        <p class="offering-desc ja ja-text">流暢さや自然な表現力を高め、日本語からの変換ではなく英語で考える力を育む、構造化された会話セッションです。</p>
+        <div class="offering-price">
+          ¥6,000<sup style="font-size:1rem">/</sup><span style="font-size:1.1rem">60min</span>
+          <small class="en-text">Online or in-person · Zushi / Kamakura</small>
+          <small class="ja ja-text">オンラインまたは対面（逗子・鎌倉エリア）</small>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="offering-card">
+        <span class="offering-icon">学</span>
+        <div class="offering-title en-text">Academic English</div>
+        <div class="offering-title ja">アカデミック英語</div>
+        <p class="offering-desc en-text">For university students: essays, presentations, reading comprehension, and the structural logic of English academic writing.</p>
+        <p class="offering-desc ja ja-text">大学生向け：エッセイ・プレゼン・読解力、そして英語のアカデミックライティングの論理構造を学びます。</p>
+        <div class="offering-price">
+          ¥7,000<sup style="font-size:1rem">/</sup><span style="font-size:1.1rem">60min</span>
+          <small class="en-text">Online or in-person</small>
+          <small class="ja ja-text">オンライン・対面</small>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="offering-card">
+        <span class="offering-icon">試</span>
+        <div class="offering-title en-text">Exam Preparation</div>
+        <div class="offering-title ja">英語試験対策</div>
+        <p class="offering-desc en-text">Targeted prep for IELTS, TOEFL, 英検, and university entrance exams. Strategy, practice, and feedback built around your test date.</p>
+        <p class="offering-desc ja ja-text">IELTS・TOEFL・英検・大学入試に向けた的を絞った対策。試験日に合わせた戦略・練習・フィードバックを提供します。</p>
+        <div class="offering-price">
+          ¥8,000<sup style="font-size:1rem">/</sup><span style="font-size:1.1rem">80min</span>
+          <small class="en-text">Online or in-person</small>
+          <small class="ja ja-text">オンライン・対面</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── HOW IT WORKS ── -->
+<section class="how" id="how">
+  <div class="container">
+    <p class="section-label">How It Works / 受講の流れ</p>
+    <h2 class="section-title en-text">Simple process, <em>serious results.</em></h2>
+    <h2 class="section-title ja ja-text">シンプルな流れで、<em style="font-style: normal;">確かな成果を。</em></h2>
+
+    <div class="how-steps">
+      <div class="step">
+        <div class="step-title en-text">Enquire</div>
+        <div class="step-title ja ja-text">お問い合わせ</div>
+        <p class="en-text">Fill in the contact form below with your goals and availability. We'll respond within 24 hours.</p>
+        <p class="ja ja-text">下のフォームにご目標とご都合を記入してください。24時間以内にご連絡します。</p>
+      </div>
+      <div class="step">
+        <div class="step-title en-text">Free Consultation</div>
+        <div class="step-title ja ja-text">無料相談</div>
+        <p class="en-text">A 20-minute call to assess your level, understand your goals, and find the right format.</p>
+        <p class="ja ja-text">20分のオンライン面談でレベルと目標を確認し、最適な形式を決めます。</p>
+      </div>
+      <div class="step">
+        <div class="step-title en-text">Book a Session</div>
+        <div class="step-title ja ja-text">セッション予約</div>
+        <p class="en-text">Choose a slot that works for you using the scheduler. Online or in-person in Zushi.</p>
+        <p class="ja ja-text">スケジューラーでご都合の良い時間を選択。オンラインまたは逗子での対面。</p>
+      </div>
+      <div class="step">
+        <div class="step-title en-text">Start Learning</div>
+        <div class="step-title ja ja-text">レッスン開始</div>
+        <p class="en-text">Sessions tailored to you — with ongoing support via LINE or email between lessons.</p>
+        <p class="ja ja-text">あなただけのカリキュラムで開始。レッスン外もLINE・メールでサポートします。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SCHEDULE ── -->
+<section class="schedule" id="schedule">
+  <div class="container">
+    <div class="schedule-inner">
+      <div>
+        <p class="section-label">Schedule / 予約</p>
+        <h2 class="section-title en-text">Book your <em>first session.</em></h2>
+        <h2 class="section-title ja ja-text">最初のセッションを<em style="font-style: normal;">予約する。</em></h2>
+        <p style="font-size: 0.9rem; color: var(--muted); line-height: 1.8; margin-top: 1rem;" class="en-text">
+          Select a time directly from the calendar. First session is a free 20-minute consultation — no commitment required.
+        </p>
+        <p style="font-size: 0.9rem; color: var(--muted); line-height: 1.8; margin-top: 1rem; font-family: var(--serif-ja); letter-spacing: 0.05em;" class="ja-text">
+          カレンダーから直接お好みの時間を選択してください。初回は20分の無料相談です。コミットメントは不要です。
+        </p>
+      </div>
+      <div>
+        <!-- SWAP THIS with: <div class="calendly-inline-widget" data-url="https://calendly.com/YOUR_LINK" style="min-width:320px;height:400px;"></div><script src="https://assets.calendly.com/assets/external/widget.js" async></script> -->
+        <div class="calendly-stub">
+          <span>🗓</span>
+          <strong style="letter-spacing: 0.1em; font-size: 0.75rem; text-transform: uppercase;">Calendar Scheduler</strong>
+          <span style="font-size: 0.78rem;">Replace with Calendly / Google Calendar embed</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-intro">
+        <p class="section-label" style="color: var(--gold);">Contact / お問い合わせ</p>
+        <h2 class="section-title en-text">Have questions? <em>Let's talk.</em></h2>
+        <h2 class="section-title ja ja-text">ご質問は<em style="font-style: normal;">お気軽に。</em></h2>
+        <p class="en-text">Not sure which course is right for you? Fill in the form and we'll get back to you within 24 hours — in English or Japanese, whichever you prefer.</p>
+        <p class="ja ja-text">どのコースが合っているか分からない場合もご安心ください。フォームにご記入いただければ24時間以内にご返信します。英語・日本語どちらでも対応可能です。</p>
+      </div>
+
+      <div>
+        <form id="contact-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Name <span class="ja-label">お名前</span></label>
+              <input type="text" name="name" placeholder="Your name" required>
+            </div>
+            <div class="form-group">
+              <label>Email <span class="ja-label">メールアドレス</span></label>
+              <input type="email" name="email" placeholder="your@email.com" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>I am… <span class="ja-label">あなたは</span></label>
+            <div class="radio-group">
+              <label class="radio-label">
+                <input type="radio" name="type" value="university_student">
+                University student <span class="ja-note">（大学生）</span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="type" value="working_adult">
+                Working adult <span class="ja-note">（社会人）</span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="type" value="other">
+                Other <span class="ja-note">（その他）</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>I'm interested in… <span class="ja-label">ご希望のコース</span></label>
+            <select name="course">
+              <option value="" disabled selected>Select a course / コースを選ぶ</option>
+              <option value="conversation">Conversation Coaching / 英会話</option>
+              <option value="academic">Academic English / アカデミック英語</option>
+              <option value="exam">Exam Prep / 試験対策</option>
+              <option value="unsure">Not sure / まだ分からない</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Format preference <span class="ja-label">受講形式</span></label>
+            <div class="radio-group">
+              <label class="radio-label">
+                <input type="radio" name="format" value="online">
+                Online <span class="ja-note">（オンライン）</span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="format" value="inperson">
+                In-person Zushi <span class="ja-note">（逗子対面）</span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="format" value="either">
+                Either <span class="ja-note">（どちらでも）</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Message <span class="ja-label">メッセージ</span></label>
+            <textarea name="message" placeholder="Tell us about your goals, current level, or any questions... / 目標・現在のレベル・ご質問など何でもどうぞ"></textarea>
+          </div>
+
+          <div class="form-submit">
+            <button type="submit" class="btn-submit" id="submit-btn">
+              <span class="en-text">Send Message</span>
+              <span class="ja-text">送信する</span>
+            </button>
+            <p class="form-note en-text">We reply in English or Japanese,<br>within 24 hours.</p>
+            <p class="form-note ja ja-text" style="font-family: var(--serif-ja); letter-spacing: 0.04em;">英語・日本語にて24時間以内にご返信します。</p>
+          </div>
+
+          <div id="form-success">
+            <strong>Message received — thank you!</strong><br>
+            We'll be in touch within 24 hours.<br>
+            <span class="ja">ご連絡ありがとうございます。24時間以内にご返信いたします。</span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-brand">Warren Elite</div>
+  <p>English Coaching · Zushi, Kanagawa · Online available</p>
+  <p style="margin-top: 0.5rem;">© 2026 Warren Elite English Coaching</p>
+</footer>
+
+<script>
+  // ── LANGUAGE TOGGLE ──
+  function setLang(lang) {
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-ja').classList.toggle('active', lang === 'ja');
+  }
+  setLang('en');
+
+  // ── CONTACT FORM → GOOGLE SHEETS ──
+  // 1. Create a Google Sheet
+  // 2. Extensions → Apps Script → paste the Apps Script below
+  // 3. Deploy as Web App (Execute as: Me, Who has access: Anyone)
+  // 4. Replace the URL below with your deployment URL
+  const APPS_SCRIPT_URL = 'YOUR_APPS_SCRIPT_DEPLOY_URL_HERE';
+
+  /*
+  APPS SCRIPT CODE (paste in your Google Apps Script editor):
+  ─────────────────────────────────────────────────────────────
+  function doPost(e) {
+    const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    const data = JSON.parse(e.postData.contents);
+    sheet.appendRow([
+      new Date(),
+      data.name,
+      data.email,
+      data.type,
+      data.course,
+      data.format,
+      data.message
+    ]);
+    return ContentService
+      .createTextOutput(JSON.stringify({ result: 'success' }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+  ─────────────────────────────────────────────────────────────
+  */
+
+  document.getElementById('contact-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = true;
+    btn.innerHTML = '<span>Sending…</span>';
+
+    const form = e.target;
+    const payload = {
+      name: form.name.value,
+      email: form.email.value,
+      type: form.type.value || '',
+      course: form.course.value,
+      format: form.format.value || '',
+      message: form.message.value
+    };
+
+    // STUB: remove the try/catch block below and uncomment the fetch when URL is set
+    try {
+      if (APPS_SCRIPT_URL === 'YOUR_APPS_SCRIPT_DEPLOY_URL_HERE') {
+        // Simulated success for preview
+        await new Promise(r => setTimeout(r, 800));
+      } else {
+        await fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+      }
+      form.reset();
+      document.getElementById('form-success').style.display = 'block';
+      btn.style.display = 'none';
+    } catch (err) {
+      btn.disabled = false;
+      btn.innerHTML = '<span class="en-text">Send Message</span><span class="ja-text">送信する</span>';
+      alert('Something went wrong. Please try again.');
+    }
+  });
+</script>
+</body>
+</html>
