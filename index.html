@@ -257,70 +257,102 @@
 
   /* ── ABOUT ── */
   .about { background: var(--white); }
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: center;
+  .about-intro {
+    max-width: 700px;
+    margin-bottom: 4rem;
   }
-  .about-text p {
+  .about-intro p {
     font-size: 0.95rem;
     color: #4a4740;
     margin-bottom: 1.2rem;
     line-height: 1.85;
   }
-  .about-text p.ja { font-family: var(--serif-ja); letter-spacing: 0.05em; }
+  .about-intro p.ja { font-family: var(--serif-ja); letter-spacing: 0.05em; }
 
-  .about-card {
+  .coaches-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  .coach-card {
     background: var(--ink);
     color: var(--white);
-    padding: 3rem;
+    padding: 2.5rem;
     position: relative;
   }
-  .about-card::before {
+  .coach-card::after {
     content: '';
     position: absolute;
-    top: 1rem;
-    left: 1rem;
-    right: -1rem;
-    bottom: -1rem;
+    bottom: -0.6rem;
+    right: -0.6rem;
+    width: 100%;
+    height: 100%;
     border: 1px solid var(--gold);
     z-index: -1;
+    transition: transform 0.2s;
   }
-  .about-card-name {
+  .coach-card:hover::after { transform: translate(3px, 3px); }
+  .coach-card-name {
     font-family: var(--serif-en);
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     font-weight: 300;
     font-style: italic;
     color: var(--gold-light);
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.1rem;
   }
-  .about-card-role {
-    font-size: 0.75rem;
+  .coach-card-name-ja {
+    font-family: var(--serif-ja);
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.12em;
+    margin-bottom: 0.4rem;
+  }
+  .coach-card-role {
+    font-size: 0.72rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.45);
+    color: rgba(255,255,255,0.4);
     margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
   }
-  .about-card p {
-    font-size: 0.88rem;
+  .coach-card p {
+    font-size: 0.87rem;
     line-height: 1.8;
-    color: rgba(255,255,255,0.7);
-    margin-bottom: 1rem;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 0.9rem;
   }
-  .about-card p.ja { font-family: var(--serif-ja); letter-spacing: 0.05em; }
+  .coach-card p.ja { font-family: var(--serif-ja); letter-spacing: 0.04em; font-size: 0.84rem; }
   .about-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
     margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
   }
   .about-tag {
     padding: 0.3rem 0.75rem;
-    border: 1px solid rgba(184,146,74,0.4);
-    font-size: 0.72rem;
+    border: 1px solid rgba(184,146,74,0.35);
+    font-size: 0.7rem;
     color: var(--gold-light);
     letter-spacing: 0.08em;
+  }
+  .school-list {
+    margin-top: 1rem;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.7;
+    font-family: var(--serif-ja);
+    letter-spacing: 0.03em;
+  }
+  .school-list-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.25);
+    margin-bottom: 0.4rem;
+    font-family: var(--sans);
   }
 
   /* ── OFFERINGS ── */
@@ -602,7 +634,7 @@
     .hero-left { padding: 5rem 2rem 3rem; }
     .hero-right { padding: 3rem 2rem; }
     .hero-stats { flex-direction: row; flex-wrap: wrap; gap: 2rem; }
-    .about-grid, .schedule-inner, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .coaches-grid, .schedule-inner, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
     .offerings-grid { grid-template-columns: 1fr; }
     .how-steps { grid-template-columns: 1fr 1fr; }
     .form-row { grid-template-columns: 1fr; }
@@ -655,9 +687,9 @@
   <div class="hero-right">
     <div class="hero-stats">
       <div class="stat">
-        <div class="stat-num">1<span>:1</span></div>
-        <div class="stat-label en-text">Fully personalised sessions</div>
-        <div class="stat-label ja ja-text">完全個別指導</div>
+        <div class="stat-num">1,000<span>+</span></div>
+        <div class="stat-label en-text">Students taught</div>
+        <div class="stat-label ja ja-text">指導生徒数</div>
       </div>
       <div class="stat">
         <div class="stat-num">15<span>+</span></div>
@@ -665,9 +697,9 @@
         <div class="stat-label ja ja-text">指導経験の合計年数</div>
       </div>
       <div class="stat">
-        <div class="stat-num">2</div>
-        <div class="stat-label en-text">Native-level bilingual coaches</div>
-        <div class="stat-label ja ja-text">バイリンガル講師</div>
+        <div class="stat-num">1<span>:1</span></div>
+        <div class="stat-label en-text">Always personalised, never a classroom</div>
+        <div class="stat-label ja ja-text">完全個別指導</div>
       </div>
     </div>
   </div>
@@ -676,37 +708,55 @@
 <!-- ── ABOUT ── -->
 <section class="about" id="about">
   <div class="container">
-    <div class="about-grid">
-      <div class="about-text">
-        <p class="section-label">About / 講師紹介</p>
-        <h2 class="section-title en-text">We know what it's like to <em>live between languages.</em></h2>
-        <h2 class="section-title ja ja-text">言語の間で生きる感覚を、<em style="font-style: normal;">私たちは知っています。</em></h2>
-        <p class="en-text">
-          Warren Elite is led by Michael Warren — bilingual English-Japanese coach, professional interpreter, and localization specialist based in Zushi. Having lived and worked across both languages professionally, Michael doesn't just teach English — he helps you understand <em>how English thinks.</em>
-        </p>
-        <p class="ja ja-text">
-          Warren Eliteを率いるのは、逗子在住のマイケル・ウォーレン。バイリンガルの英語コーチ、通訳者、ローカライズのスペシャリストとして活躍しています。英語と日本語の両方でプロとして働いてきた経験から、英語そのものだけでなく、「英語の考え方」を伝えることを大切にしています。
-        </p>
-        <p class="en-text">
-          With a background in the JET Programme, translation, and building AI-assisted language tools, Michael brings a rare perspective — fluency in both the language and the logic behind it.
-        </p>
-        <p class="ja ja-text">
-          JETプログラム出身で、翻訳やAI言語ツールの開発にも携わってきたマイケルは、言語そのものだけでなく、その背後にある論理にも精通した稀有な存在です。
-        </p>
-      </div>
-      <div class="about-card">
-        <div class="about-card-name">Michael Warren</div>
-        <div class="about-card-role">Lead Coach · Bilingual EN/JA</div>
-        <p class="en-text">Bilingual English-Japanese. Former JET Programme. Professional interpreter and translator. Based in Zushi, Kanagawa.</p>
-        <p class="ja ja-text">英日バイリンガル。元JETプログラム参加者。プロ通訳者・翻訳者。神奈川県逗子市在住。</p>
+    <div class="about-intro">
+      <p class="section-label">About / 講師紹介</p>
+      <h2 class="section-title en-text">Two coaches. One goal — <em>real English fluency.</em></h2>
+      <h2 class="section-title ja ja-text">二人の講師が、<em style="font-style: normal;">本物の英語力</em>をサポートします。</h2>
+      <p class="en-text">Warren Elite was founded by Tomoko and Michael Warren — a unique pairing of deep Japanese teaching expertise and native English fluency. Together we bring over 15 years of experience and a shared belief that the best English learning happens one-on-one, with a coach who truly understands both sides of the language.</p>
+      <p class="ja ja-text">Warren Eliteは、ウォーレン智子とマイケル・ウォーレンが共同で設立しました。日本の教育現場での深い実績と、ネイティブレベルの英語力を兼ね備えた、唯一無二のコーチングチームです。15年以上の指導経験と、「完全個別指導こそが最良の英語学習」という共通の信念を持って、皆さんをサポートします。</p>
+    </div>
+
+    <div class="coaches-grid">
+
+      <!-- Tomoko -->
+      <div class="coach-card">
+        <div class="coach-card-name">Tomoko Warren</div>
+        <div class="coach-card-name-ja">ウォーレン　智子</div>
+        <div class="coach-card-role">Lead Instructor · 英検1級 · 15+ Years · 1,000+ Students</div>
+        <p class="en-text">With over 15 years of English instruction and more than 1,000 students guided to success, Tomoko brings unmatched depth to exam preparation and academic English. As a former head instructor at a major Tokyo English school, she has a proven track record helping students reach top universities and pass highly competitive exams.</p>
+        <p class="ja ja-text">英語指導歴15年以上、指導生徒数1,000人超。英検1級取得。東京の大手英語専門塾で教室長を務め、多くの生徒を志望校合格や英検などの資格取得へ導いてきました。現在は独立し、長年の経験とAIを活用した教材で、一人ひとりの可能性を最大限に引き出す個別指導を行っています。</p>
         <div class="about-tags">
-          <span class="about-tag">Conversation</span>
-          <span class="about-tag">Academic Writing</span>
-          <span class="about-tag">Business English</span>
-          <span class="about-tag">IELTS / TOEFL</span>
-          <span class="about-tag">JET Programme</span>
+          <span class="about-tag">英検1級</span>
+          <span class="about-tag">Exam Prep</span>
+          <span class="about-tag">Academic English</span>
+          <span class="about-tag">University Entrance</span>
+          <span class="about-tag">1,000+ Students</span>
+        </div>
+        <div class="school-list">
+          <div class="school-list-label en-text">Notable student placements</div>
+          <div class="school-list-label ja-text" style="font-family: var(--sans);">ご指導した生徒の在籍校・進学先（一部）</div>
+          麻布 / 武蔵 / 早稲田中等部 / 慶應普通部・中等部 / 慶應女子 / 桜蔭 / 駒場東邦 / 渋谷教育渋谷 / 広尾学園 / 聖光学院 / 浅野　など多数<br><br>
+          京都大学 / 東北大学 / 筑波大学医学群 / 早稲田大学 / 慶應大学 / 上智大学 / 横浜市立大学医学部　など
         </div>
       </div>
+
+      <!-- Michael -->
+      <div class="coach-card">
+        <div class="coach-card-name">Michael Warren</div>
+        <div class="coach-card-name-ja">マイケル・ウォーレン</div>
+        <div class="coach-card-role">English Coach · Interpreter · Bilingual EN/JA</div>
+        <p class="en-text">A native English speaker who has lived and worked bilingually in Japan for years, Michael brings a rare perspective — he understands exactly how Japanese speakers think, and why certain things in English feel unnatural. His background spans the JET Programme, professional interpreting, translation, and building AI-assisted language tools.</p>
+        <p class="ja ja-text">長年にわたり日本で英日バイリンガルとして生活・仕事をしてきたネイティブスピーカー。日本語話者がどのように考えるかを深く理解しているため、英語のどこが難しいのかを的確に把握しています。JETプログラム出身。プロ通訳者・翻訳者としての経験に加え、AIを活用した言語ツールの開発にも携わっています。</p>
+        <div class="about-tags">
+          <span class="about-tag">Native English</span>
+          <span class="about-tag">Conversation</span>
+          <span class="about-tag">Business English</span>
+          <span class="about-tag">Interpreting</span>
+          <span class="about-tag">JET Programme</span>
+          <span class="about-tag">AI & Language</span>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
